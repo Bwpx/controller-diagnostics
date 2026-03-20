@@ -563,9 +563,9 @@ export default function App() {
         {/* Footer */}
         <div className="footer">
           <div className="footer-text">
-            <strong>Martin Gonzalez</strong> · Computer Science Student
+            <strong>Martin Gonzalez</strong> · Personal Project
             <br />
-            Real-time controller diagnostics via the Web Gamepad API.
+            Built for competitive gamers who need to detect stick drift and diagnose controller input in real time.
           </div>
           <div className="footer-tag">CS · Project</div>
         </div>
