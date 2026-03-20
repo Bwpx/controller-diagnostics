@@ -357,24 +357,81 @@ const css = `
   .footer {
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 16px 20px;
+    padding: 24px 28px;
+    background: var(--surface);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .footer-quote-bar {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    margin-bottom: 16px;
+  }
+  .footer-accent-bar {
+    width: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: background 0.3s;
+  }
+  .footer-quote {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.75;
+    font-style: italic;
+    transition: color 0.3s;
+  }
+  .footer-body {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 18px;
+    transition: color 0.3s;
+  }
+  .footer-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 14px;
+    transition: background 0.3s;
+  }
+  .footer-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    background: var(--surface);
-    transition: background 0.3s, border-color 0.3s;
+    flex-wrap: wrap;
   }
-  .footer-text { font-size: 12px; color: var(--muted); line-height: 1.6; transition: color 0.3s; }
-  .footer-text strong { color: var(--text); font-weight: 600; }
-  .footer-tag {
+  .footer-meta-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    transition: color 0.3s;
+  }
+  .footer-sep { color: var(--muted); }
+  .footer-role {
+    font-size: 12px;
+    color: var(--muted);
+    transition: color 0.3s;
+  }
+  .footer-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .footer-pill {
     font-family: var(--mono);
     font-size: 9px;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     background: var(--tag-bg);
     border: 1px solid var(--border-bright);
-    padding: 4px 8px;
+    padding: 3px 9px;
     border-radius: 3px;
     white-space: nowrap;
     transition: background 0.3s, border-color 0.3s, color 0.3s;
@@ -562,12 +619,31 @@ export default function App() {
 
         {/* Footer */}
         <div className="footer">
-          <div className="footer-text">
-            <strong>Martin Gonzalez</strong> · Personal Project
-            <br />
-            Built for competitive gamers who need to detect stick drift and diagnose controller input in real time.
+          <div className="footer-quote-bar">
+            <div className="footer-accent-bar" />
+            <div className="footer-quote">
+              Built for competitive gamers who need to see exactly what their controller is doing — every axis, every button, every frame. Stick drift is invisible until it costs you. This tool makes it visible.
+            </div>
           </div>
-          <div className="footer-tag">CS · Project</div>
+
+          <div className="footer-body">
+            Controller Analyzer was developed as a personal project using the Web Gamepad API and React. No backend, no installs — just your browser and your controller. Whether you're diagnosing hardware before a tournament or just curious how your inputs look under pressure, this tool gives you the clarity you need to compete with confidence.
+          </div>
+
+          <div className="footer-divider" />
+
+          <div className="footer-meta">
+            <div className="footer-meta-left">
+              <span className="footer-name">Martin Gonzalez</span>
+              <span className="footer-sep">·</span>
+              <span className="footer-role">Personal Project</span>
+            </div>
+            <div className="footer-pills">
+              <span className="footer-pill">Web Gamepad API</span>
+              <span className="footer-pill">React</span>
+              <span className="footer-pill">Open Source</span>
+            </div>
+          </div>
         </div>
 
       </div>
