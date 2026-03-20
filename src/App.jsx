@@ -5,21 +5,21 @@ const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Share+Tech+
 const css = `
   ${FONTS}
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #060a10; }
+  body { background: #dce3ee; }
 
   :root {
-    --bg: #060a10;
-    --surface: #0b1220;
-    --surface2: #0f1a2e;
-    --border: rgba(56, 189, 248, 0.12);
-    --border-bright: rgba(56, 189, 248, 0.35);
-    --accent: #38bdf8;
-    --accent2: #818cf8;
-    --accent-glow: rgba(56, 189, 248, 0.25);
-    --pressed: #34d399;
-    --pressed-glow: rgba(52, 211, 153, 0.4);
-    --text: #e2e8f0;
-    --muted: #475569;
+    --bg: #dce3ee;
+    --surface: #c8d2e0;
+    --surface2: #bcc7d6;
+    --border: rgba(44, 123, 229, 0.18);
+    --border-bright: rgba(44, 123, 229, 0.4);
+    --accent: #2c7be5;
+    --accent2: #5a5fcf;
+    --accent-glow: rgba(44, 123, 229, 0.2);
+    --pressed: #0e9e6e;
+    --pressed-glow: rgba(14, 158, 110, 0.3);
+    --text: #1e2a3a;
+    --muted: #4a5568;
     --mono: 'Share Tech Mono', monospace;
     --sans: 'Exo 2', sans-serif;
   }
@@ -58,7 +58,7 @@ const css = `
     letter-spacing: 0.15em;
     color: var(--accent);
     text-transform: uppercase;
-    background: rgba(56,189,248,0.08);
+    background: rgba(44,123,229,0.1);
     border: 1px solid var(--border-bright);
     padding: 4px 10px;
     border-radius: 3px;
@@ -140,7 +140,7 @@ const css = `
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(56,189,248,0.03) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(44,123,229,0.04) 0%, transparent 60%);
     pointer-events: none;
   }
   .card-label {
@@ -168,7 +168,7 @@ const css = `
     border-radius: 50%;
     border: 1px solid var(--border-bright);
     position: relative;
-    background: radial-gradient(circle at center, rgba(56,189,248,0.04) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(44,123,229,0.06) 0%, transparent 70%);
   }
   .stick-line-h {
     position: absolute;
@@ -243,7 +243,7 @@ const css = `
   }
   .axis-bar-bg {
     height: 4px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(0,0,0,0.12);
     border-radius: 2px;
     overflow: hidden;
     position: relative;
@@ -283,7 +283,7 @@ const css = `
     background: rgba(52, 211, 153, 0.12);
     border-color: var(--pressed);
     color: var(--pressed);
-    box-shadow: 0 0 8px var(--pressed-glow), inset 0 0 8px rgba(52,211,153,0.05);
+    box-shadow: 0 0 8px var(--pressed-glow), inset 0 0 8px rgba(14,158,110,0.05);
   }
 
   /* ── Trigger bars ── */
@@ -296,7 +296,7 @@ const css = `
   .trigger-card {}
   .trigger-fill-bg {
     height: 8px;
-    background: rgba(255,255,255,0.05);
+    background: rgba(0,0,0,0.12);
     border-radius: 4px;
     overflow: hidden;
     margin-top: 12px;
@@ -306,7 +306,7 @@ const css = `
     background: linear-gradient(90deg, var(--accent2), var(--accent));
     border-radius: 4px;
     transition: width 0.05s linear;
-    box-shadow: 0 0 8px rgba(129,140,248,0.5);
+    box-shadow: 0 0 8px rgba(90,95,207,0.4);
   }
   .trigger-val {
     font-family: var(--mono);
@@ -341,7 +341,7 @@ const css = `
     font-size: 9px;
     letter-spacing: 0.12em;
     color: var(--accent);
-    background: rgba(56,189,248,0.06);
+    background: rgba(44,123,229,0.08);
     border: 1px solid var(--border-bright);
     padding: 4px 8px;
     border-radius: 3px;
