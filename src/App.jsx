@@ -5,23 +5,60 @@ const FONTS = `@import url('https://fonts.googleapis.com/css2?family=Share+Tech+
 const css = `
   ${FONTS}
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #dce3ee; }
 
   :root {
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'Exo 2', sans-serif;
+  }
+
+  /* ── Light theme ── */
+  .root.light {
     --bg: #dce3ee;
     --surface: #c8d2e0;
     --surface2: #bcc7d6;
-    --border: rgba(44, 123, 229, 0.18);
-    --border-bright: rgba(44, 123, 229, 0.4);
+    --border: rgba(44,123,229,0.18);
+    --border-bright: rgba(44,123,229,0.4);
     --accent: #2c7be5;
     --accent2: #5a5fcf;
-    --accent-glow: rgba(44, 123, 229, 0.2);
+    --accent-glow: rgba(44,123,229,0.15);
     --pressed: #0e9e6e;
-    --pressed-glow: rgba(14, 158, 110, 0.3);
+    --pressed-glow: rgba(14,158,110,0.3);
     --text: #1e2a3a;
     --muted: #4a5568;
-    --mono: 'Share Tech Mono', monospace;
-    --sans: 'Exo 2', sans-serif;
+    --bar-bg: rgba(0,0,0,0.12);
+    --badge-bg: rgba(44,123,229,0.10);
+    --tag-bg: rgba(44,123,229,0.08);
+    --card-tint: rgba(44,123,229,0.04);
+    --trigger-glow: rgba(90,95,207,0.35);
+    --chip-active-bg: rgba(14,158,110,0.12);
+    --chip-active-in: rgba(14,158,110,0.05);
+    --toggle-bg: #b0bdd0;
+    --toggle-knob: #fff;
+  }
+
+  /* ── Dark theme ── */
+  .root.dark {
+    --bg: #060a10;
+    --surface: #0b1220;
+    --surface2: #0f1a2e;
+    --border: rgba(56,189,248,0.12);
+    --border-bright: rgba(56,189,248,0.35);
+    --accent: #38bdf8;
+    --accent2: #818cf8;
+    --accent-glow: rgba(56,189,248,0.2);
+    --pressed: #34d399;
+    --pressed-glow: rgba(52,211,153,0.4);
+    --text: #e2e8f0;
+    --muted: #475569;
+    --bar-bg: rgba(255,255,255,0.07);
+    --badge-bg: rgba(56,189,248,0.08);
+    --tag-bg: rgba(56,189,248,0.06);
+    --card-tint: rgba(56,189,248,0.03);
+    --trigger-glow: rgba(129,140,248,0.45);
+    --chip-active-bg: rgba(52,211,153,0.12);
+    --chip-active-in: rgba(52,211,153,0.05);
+    --toggle-bg: #1e3a5f;
+    --toggle-knob: #38bdf8;
   }
 
   .root {
@@ -33,12 +70,10 @@ const css = `
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
-  .shell {
-    width: 860px;
-    max-width: 100%;
-  }
+  .shell { width: 860px; max-width: 100%; }
 
   /* ── Header ── */
   .header {
@@ -48,7 +83,6 @@ const css = `
     margin-bottom: 36px;
     gap: 20px;
   }
-  .header-left {}
   .badge {
     display: inline-flex;
     align-items: center;
@@ -58,11 +92,12 @@ const css = `
     letter-spacing: 0.15em;
     color: var(--accent);
     text-transform: uppercase;
-    background: rgba(44,123,229,0.1);
+    background: var(--badge-bg);
     border: 1px solid var(--border-bright);
     padding: 4px 10px;
     border-radius: 3px;
     margin-bottom: 10px;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
   }
   .badge-dot {
     width: 6px; height: 6px;
@@ -81,7 +116,7 @@ const css = `
     letter-spacing: -0.5px;
     line-height: 1.1;
   }
-  .title span { color: var(--accent); }
+  .title span { color: var(--accent); transition: color 0.3s; }
   .controller-id {
     font-family: var(--mono);
     font-size: 11px;
@@ -91,12 +126,16 @@ const css = `
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.3s;
   }
-  .header-stat {
+
+  /* ── Header right ── */
+  .header-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 4px;
+    gap: 14px;
+    flex-shrink: 0;
   }
   .stat-label {
     font-family: var(--mono);
@@ -104,19 +143,61 @@ const css = `
     letter-spacing: 0.12em;
     color: var(--muted);
     text-transform: uppercase;
+    transition: color 0.3s;
   }
   .stat-value {
     font-family: var(--mono);
     font-size: 22px;
     color: var(--accent);
     line-height: 1;
+    transition: color 0.3s;
   }
+
+  /* ── Toggle ── */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .toggle-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    transition: color 0.3s;
+    min-width: 28px;
+    text-align: right;
+  }
+  .toggle-track {
+    width: 40px;
+    height: 22px;
+    border-radius: 11px;
+    background: var(--toggle-bg);
+    border: 1px solid var(--border-bright);
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .toggle-knob {
+    position: absolute;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--toggle-knob);
+    transition: left 0.3s cubic-bezier(.4,0,.2,1), background 0.3s;
+  }
+  .root.light .toggle-knob { left: 3px; }
+  .root.dark  .toggle-knob { left: 21px; }
 
   /* ── Divider ── */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
     margin-bottom: 32px;
+    transition: background 0.3s;
   }
 
   /* ── Grid ── */
@@ -135,13 +216,15 @@ const css = `
     padding: 24px;
     position: relative;
     overflow: hidden;
+    transition: background 0.3s, border-color 0.3s;
   }
   .card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(44,123,229,0.04) 0%, transparent 60%);
+    background: linear-gradient(135deg, var(--card-tint) 0%, transparent 60%);
     pointer-events: none;
+    transition: background 0.3s;
   }
   .card-label {
     font-family: var(--mono);
@@ -150,25 +233,19 @@ const css = `
     color: var(--muted);
     text-transform: uppercase;
     margin-bottom: 20px;
+    transition: color 0.3s;
   }
 
   /* ── Stick ── */
-  .stick-wrap {
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-  }
-  .stick-visual {
-    position: relative;
-    flex-shrink: 0;
-  }
+  .stick-wrap { display: flex; gap: 8px; align-items: flex-start; }
+  .stick-visual { position: relative; flex-shrink: 0; }
   .stick-circle {
-    width: 120px;
-    height: 120px;
+    width: 120px; height: 120px;
     border-radius: 50%;
     border: 1px solid var(--border-bright);
     position: relative;
-    background: radial-gradient(circle at center, rgba(44,123,229,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+    transition: background 0.3s, border-color 0.3s;
   }
   .stick-line-h {
     position: absolute;
@@ -176,6 +253,7 @@ const css = `
     height: 1px;
     background: var(--border);
     transform: translateY(-50%);
+    transition: background 0.3s;
   }
   .stick-line-v {
     position: absolute;
@@ -183,11 +261,11 @@ const css = `
     width: 1px;
     background: var(--border);
     transform: translateX(-50%);
+    transition: background 0.3s;
   }
   .stick-trail {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     border-radius: 50%;
     background: var(--accent-glow);
     transform: translate(-50%, -50%);
@@ -196,13 +274,12 @@ const css = `
   }
   .stick-dot {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     border-radius: 50%;
     background: var(--accent);
     transform: translate(-50%, -50%);
     box-shadow: 0 0 12px var(--accent), 0 0 4px var(--accent);
-    transition: left 0.05s linear, top 0.05s linear;
+    transition: left 0.05s linear, top 0.05s linear, background 0.3s, box-shadow 0.3s;
   }
   .stick-ring {
     position: absolute;
@@ -211,62 +288,33 @@ const css = `
     border: 1px solid var(--accent);
     opacity: 0.2;
     transform: translate(-50%, -50%);
-    transition: left 0.05s linear, top 0.05s linear;
+    transition: left 0.05s linear, top 0.05s linear, border-color 0.3s;
   }
-  .stick-data {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 8px;
-  }
-  .axis-row {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .axis-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .axis-name {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-  }
-  .axis-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-  }
+  .stick-data { flex: 1; display: flex; flex-direction: column; gap: 8px; padding-top: 8px; }
+  .axis-row { display: flex; flex-direction: column; gap: 4px; }
+  .axis-header { display: flex; justify-content: space-between; align-items: center; }
+  .axis-name { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: var(--muted); transition: color 0.3s; }
+  .axis-num { font-family: var(--mono); font-size: 11px; color: var(--accent); transition: color 0.3s; }
   .axis-bar-bg {
     height: 4px;
-    background: rgba(0,0,0,0.12);
+    background: var(--bar-bg);
     border-radius: 2px;
     overflow: hidden;
     position: relative;
+    transition: background 0.3s;
   }
   .axis-bar-fill {
     position: absolute;
-    top: 0;
-    height: 100%;
+    top: 0; height: 100%;
     background: var(--accent);
     border-radius: 2px;
-    transition: left 0.05s, width 0.05s;
+    transition: left 0.05s, width 0.05s, background 0.3s;
     box-shadow: 0 0 6px var(--accent);
   }
 
-  /* ── Buttons card ── */
-  .buttons-card {
-    margin-bottom: 20px;
-  }
-  .btn-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+  /* ── Buttons ── */
+  .buttons-card { margin-bottom: 20px; }
+  .btn-grid { display: flex; flex-wrap: wrap; gap: 8px; }
   .btn-chip {
     font-family: var(--mono);
     font-size: 10px;
@@ -280,41 +328,30 @@ const css = `
     white-space: nowrap;
   }
   .btn-chip.active {
-    background: rgba(52, 211, 153, 0.12);
+    background: var(--chip-active-bg);
     border-color: var(--pressed);
     color: var(--pressed);
-    box-shadow: 0 0 8px var(--pressed-glow), inset 0 0 8px rgba(14,158,110,0.05);
+    box-shadow: 0 0 8px var(--pressed-glow), inset 0 0 8px var(--chip-active-in);
   }
 
-  /* ── Trigger bars ── */
-  .triggers-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-  }
-  .trigger-card {}
+  /* ── Triggers ── */
+  .triggers-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
   .trigger-fill-bg {
     height: 8px;
-    background: rgba(0,0,0,0.12);
+    background: var(--bar-bg);
     border-radius: 4px;
     overflow: hidden;
     margin-top: 12px;
+    transition: background 0.3s;
   }
   .trigger-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--accent2), var(--accent));
     border-radius: 4px;
-    transition: width 0.05s linear;
-    box-shadow: 0 0 8px rgba(90,95,207,0.4);
+    transition: width 0.05s linear, background 0.3s;
+    box-shadow: 0 0 8px var(--trigger-glow);
   }
-  .trigger-val {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    margin-top: 6px;
-    text-align: right;
-  }
+  .trigger-val { font-family: var(--mono); font-size: 11px; color: var(--accent2); margin-top: 6px; text-align: right; transition: color 0.3s; }
 
   /* ── Footer ── */
   .footer {
@@ -326,26 +363,21 @@ const css = `
     justify-content: space-between;
     gap: 12px;
     background: var(--surface);
+    transition: background 0.3s, border-color 0.3s;
   }
-  .footer-text {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-  .footer-text strong {
-    color: var(--text);
-    font-weight: 600;
-  }
+  .footer-text { font-size: 12px; color: var(--muted); line-height: 1.6; transition: color 0.3s; }
+  .footer-text strong { color: var(--text); font-weight: 600; }
   .footer-tag {
     font-family: var(--mono);
     font-size: 9px;
     letter-spacing: 0.12em;
     color: var(--accent);
-    background: rgba(44,123,229,0.08);
+    background: var(--tag-bg);
     border: 1px solid var(--border-bright);
     padding: 4px 8px;
     border-radius: 3px;
     white-space: nowrap;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
   }
 `;
 
@@ -355,26 +387,21 @@ const BUTTON_LABELS = [
 ];
 
 function AxisBar({ value }) {
-  // value in [-1, 1]. Center at 50%.
   const center = 50;
   const pct = value * 50;
   const left = pct < 0 ? center + pct : center;
   const width = Math.abs(pct);
   return (
     <div className="axis-bar-bg">
-      <div
-        className="axis-bar-fill"
-        style={{ left: `${left}%`, width: `${width}%` }}
-      />
+      <div className="axis-bar-fill" style={{ left: `${left}%`, width: `${width}%` }} />
     </div>
   );
 }
 
 function StickCard({ label, x, y, pressed }) {
-  const r = 55; // radius from center in px (circle is 120px → r=60, minus dot)
+  const r = 55;
   const dotX = 60 + x * r;
   const dotY = 60 + y * r;
-
   return (
     <div className="card">
       <div className="card-label">{label}{pressed ? " · CLICK" : ""}</div>
@@ -432,6 +459,7 @@ export default function App() {
   const [triggers, setTriggers] = useState([0,0]);
   const [controllerId, setControllerId] = useState("No controller detected — press any button to connect");
   const [pressCount, setPressCount] = useState(0);
+  const [theme, setTheme] = useState("light");
   const prevButtons = useRef([]);
 
   useEffect(() => {
@@ -443,9 +471,7 @@ export default function App() {
         setAxes([gp.axes[0]??0, gp.axes[1]??0, gp.axes[2]??0, gp.axes[3]??0]);
         const btns = gp.buttons.map(b => b.pressed);
         setButtons(btns);
-        // LT / RT as analog
         setTriggers([gp.buttons[6]?.value??0, gp.buttons[7]?.value??0]);
-        // count new presses
         const prev = prevButtons.current;
         const newPresses = btns.filter((v,i) => v && !prev[i]).length;
         if (newPresses > 0) setPressCount(c => c + newPresses);
@@ -459,9 +485,10 @@ export default function App() {
 
   const [lx,ly,rx,ry] = axes;
   const activeCount = buttons.filter(Boolean).length;
+  const isDark = theme === "dark";
 
   return (
-    <div className="root">
+    <div className={`root ${theme}`}>
       <style>{css}</style>
       <div className="shell">
 
@@ -475,9 +502,23 @@ export default function App() {
             <h1 className="title">Controller <span>Analyzer</span></h1>
             <div className="controller-id">{controllerId}</div>
           </div>
-          <div className="header-stat">
-            <span className="stat-label">Total Presses</span>
-            <span className="stat-value">{String(pressCount).padStart(4,"0")}</span>
+
+          <div className="header-right">
+            <div style={{ textAlign: "right" }}>
+              <div className="stat-label">Total Presses</div>
+              <div className="stat-value">{String(pressCount).padStart(4,"0")}</div>
+            </div>
+
+            <div
+              className="theme-toggle"
+              onClick={() => setTheme(t => t === "light" ? "dark" : "light")}
+              title={`Switch to ${isDark ? "light" : "dark"} mode`}
+            >
+              <span className="toggle-label">{isDark ? "Dark" : "Light"}</span>
+              <div className="toggle-track">
+                <div className="toggle-knob" />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -492,7 +533,7 @@ export default function App() {
         {/* Triggers */}
         <div className="triggers-row">
           {[["LEFT TRIGGER", triggers[0]], ["RIGHT TRIGGER", triggers[1]]].map(([label, val]) => (
-            <div className="card trigger-card" key={label}>
+            <div className="card" key={label}>
               <div className="card-label">{label}</div>
               <div className="trigger-fill-bg">
                 <div className="trigger-fill" style={{ width: `${val * 100}%` }} />
