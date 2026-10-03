@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import TopBar from './components/TopBar.jsx';
 import ControllerSelector from './components/ControllerSelector.jsx';
 import Stage from './components/Stage.jsx';
+import NoController from './components/NoController.jsx';
+import BottomPanel from './components/BottomPanel.jsx';
 import { getModel, isModelId } from './controllers/index.js';
 import { detect } from './input/detect.js';
 import { readJSON, writeJSON } from './input/storage.js';
@@ -76,7 +78,10 @@ export default function App({ store }) {
       />
       <ControllerSelector modelId={model.id} hint={hint} onChoose={chooseModel} />
       <main className="app-main">
-        <Stage model={model} snapshot={snapshot} heat={store.acc.heat} />
+        <Stage model={model} snapshot={snapshot} heat={store.acc.heat}>
+          {!snapshot.connected && <NoController />}
+        </Stage>
+        <BottomPanel store={store} snapshot={snapshot} model={model} />
       </main>
     </div>
   );
