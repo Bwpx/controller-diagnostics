@@ -1,0 +1,52 @@
+.selector {
+  border-bottom: 1px solid var(--frame-border);
+}
+
+.selector-inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.selector-tabs {
+  display: flex;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.selector-tab {
+  flex: none;
+  padding: 10px 10px 8px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--frame-muted);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.selector-tab:hover {
+  color: var(--frame-text);
+}
+
+.selector-tab.is-active {
+  border-bottom-color: var(--frame-text);
+  color: var(--frame-text);
+}
+
+.selector-tab:focus-visible {
+  outline: 2px solid var(--frame-text);
+  outline-offset: -2px;
+}
+
+.selector-hint {
+  flex: none;
+  margin-left: auto;
+  color: var(--frame-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}

@@ -1,0 +1,34 @@
+.heat {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.heat canvas,
+.heat-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heat canvas {
+  border-radius: 50%;
+}
+
+.heat--mini {
+  width: 72px;
+  margin: 8px auto 0;
+}
+
+.heat-line,
+.heat-deadzone {
+  fill: none;
+  stroke: var(--track);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.heat-deadzone {
+  stroke: var(--ink-muted);
+  stroke-dasharray: 2 2;
+}

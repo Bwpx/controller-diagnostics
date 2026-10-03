@@ -1,0 +1,217 @@
+/* Controller drawings. Colors are theme-independent (--pad-* tokens). */
+.pad {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.pad-body {
+  fill: var(--pad-body);
+  stroke: var(--pad-stroke);
+  stroke-width: 1.5;
+}
+
+.pad-plate {
+  fill: var(--pad-plate);
+  stroke: var(--pad-stroke-soft);
+}
+
+.pad-recess {
+  fill: var(--pad-recess);
+  stroke: var(--pad-stroke-soft);
+}
+
+.pad-seam {
+  fill: none;
+  stroke: var(--pad-stroke-soft);
+}
+
+.pad-slit {
+  fill: none;
+  stroke: var(--pad-slit);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.pad-lightbar {
+  fill: var(--pad-slit);
+}
+
+.pad-led {
+  fill: var(--pad-slit);
+}
+
+.pad-port {
+  fill: var(--pad-well);
+  stroke: var(--pad-stroke);
+}
+
+.pad-label {
+  fill: var(--on-stage-muted);
+  font-family: var(--font-num);
+  font-size: 11px;
+}
+
+.part {
+  fill: var(--pad-part);
+  stroke: var(--pad-stroke);
+}
+
+.part-outline {
+  fill: none;
+  stroke: var(--pad-stroke);
+}
+
+.is-pressed > .part,
+.part.is-pressed {
+  fill: var(--pad-pressed);
+  stroke: var(--pad-pressed);
+}
+
+.trigger-fill {
+  fill: var(--pad-pressed);
+}
+
+.trigger-ridges {
+  fill: none;
+  stroke: var(--pad-slit);
+  opacity: 0.8;
+}
+
+.icon {
+  fill: none;
+  stroke: var(--pad-detail);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-fill {
+  fill: var(--pad-detail);
+}
+
+.is-pressed > .icon {
+  stroke: var(--pad-pressed-ink);
+}
+
+.is-pressed > .icon-fill {
+  fill: var(--pad-pressed-ink);
+}
+
+.face-body {
+  fill: var(--pad-part);
+  stroke: var(--pad-stroke);
+}
+
+.face-bevel {
+  fill: none;
+  stroke: #323338;
+}
+
+.glyph {
+  fill: none;
+  stroke: var(--pad-symbol);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.glyph-text {
+  fill: var(--pad-symbol);
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+
+.face.is-pressed .face-body {
+  fill: var(--pad-pressed);
+  stroke: var(--pad-pressed);
+}
+
+.face.is-pressed .face-bevel {
+  stroke: none;
+}
+
+.face.is-pressed .glyph {
+  stroke: var(--pad-pressed-ink);
+  stroke-width: 2;
+}
+
+.face.is-pressed .glyph-text {
+  fill: var(--pad-pressed-ink);
+}
+
+.dpad-plus {
+  stroke-linejoin: round;
+}
+
+.dpad-arrow {
+  fill: var(--pad-detail);
+}
+
+.dpad-arm.is-pressed .dpad-arrow {
+  fill: var(--pad-pressed-ink);
+}
+
+.dpad-hit {
+  fill: var(--pad-pressed);
+}
+
+.stick-well {
+  fill: var(--pad-well);
+  stroke: var(--pad-stroke-soft);
+}
+
+.stick-well-ring {
+  fill: none;
+  stroke: #1d1e21;
+}
+
+.stick-link {
+  stroke: var(--pad-detail);
+}
+
+.stick-cap {
+  fill: var(--pad-part);
+  stroke: var(--pad-slit);
+}
+
+.stick-grip {
+  fill: none;
+  stroke: var(--pad-stroke);
+  stroke-width: 3;
+  stroke-dasharray: 2 2.2;
+}
+
+.stick-top {
+  fill: #232427;
+  stroke: var(--pad-stroke);
+}
+
+.stick-dish {
+  fill: none;
+  stroke: var(--pad-stroke-soft);
+}
+
+.stick.is-pressed .stick-cap,
+.stick.is-pressed .stick-top {
+  fill: var(--pad-pressed);
+}
+
+.stick.is-pressed .stick-grip,
+.stick.is-pressed .stick-dish {
+  stroke: #b9bac0;
+}
+
+.stick.is-drift .stick-cap {
+  stroke: var(--drift);
+  stroke-width: 1.5;
+}
+
+.stick.is-drift .stick-link {
+  stroke: var(--drift);
+}
+
+.grille-dot {
+  fill: #3f4045;
+}

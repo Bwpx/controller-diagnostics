@@ -1,0 +1,84 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--frame-bg);
+  color: var(--frame-text);
+  font: 13px/1.4 var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+.num {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  width: 100%;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Text buttons used in the frame. */
+.btn {
+  padding: 4px 10px;
+  border: 1px solid var(--frame-border-strong);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--frame-text);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--frame-muted);
+}
+
+.btn:disabled {
+  color: var(--frame-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.link-btn {
+  padding: 4px 2px;
+  border: 0;
+  background: none;
+  color: var(--frame-muted);
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: var(--frame-text);
+}
+
+.btn:focus-visible,
+.link-btn:focus-visible,
+.tab-btn:focus-visible {
+  outline: 2px solid var(--frame-text);
+  outline-offset: 2px;
+}
