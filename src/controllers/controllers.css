@@ -42,6 +42,14 @@
   fill: var(--pad-slit);
 }
 
+/* Xbox 360 guide ring: four player segments. 2π·27 ≈ 169.6 = 4 × (34.4 + 8). */
+.pad-ring {
+  fill: none;
+  stroke: var(--pad-slit);
+  stroke-width: 3;
+  stroke-dasharray: 34.4 8;
+}
+
 .pad-port {
   fill: var(--pad-well);
   stroke: var(--pad-stroke);
